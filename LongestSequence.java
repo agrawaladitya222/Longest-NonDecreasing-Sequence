@@ -3,10 +3,17 @@ package longestsequence;
 public class LongestSequence {
 	private int[] input = new int[25];
 	private int inputindex=0;
+	private String output = "The longest nondecreasing sequence(s) out of the numbers you input:\n";
 	
 	public void setInput(int a) {
 		input[inputindex] = a;
 		inputindex = inputindex + 1;
+	}
+	
+	public void tester() {
+		for(int counter=0; counter<=24; counter++) {
+			System.out.println(input[counter]);
+		}
 	}
 	
 	public void resetInputs() {
@@ -16,27 +23,45 @@ public class LongestSequence {
 		inputindex=0;
 	}
 	
-	public String outputSequence() {
-		String output = "The longest sequnce of non-decreasing numbers is ";
+	public void findSequence() {
 		int numberbefore=input[0];
-		int longsequencelength;
+		int longsequencelength=0,testsequencelength=0;
+		int firstnumberindex=9999;
 		
+		//determine longsequence length
 		for(int counter=0; counter<=24; counter++) {
-			
-			
-			
-			
+			if(input[counter] >= numberbefore) {
+				testsequencelength = testsequencelength+1;
+			}
+			else {
+				if(testsequencelength>=longsequencelength) {
+					longsequencelength = testsequencelength;
+					firstnumberindex = counter - longsequencelength;
+					//buildOutput(firstnumberindex, longsequencelength);
+				}
+				testsequencelength = 1;
+			}
+			numberbefore = input[counter];
 		}
 		
+		System.out.println(longsequencelength);
+		System.out.println(firstnumberindex);
 		
 		
-		
-		return output;
+	}
+	
+	public void buildOutput(int firstnumber,int length) {
+		for(int counter=firstnumber; counter<(length + firstnumber); counter++) {
+			output = output + input[counter] + " ";
+		}
+		output = output + "\n";
 	}
 	
 	
-	
-	
+	public String getOutput() {
+		
+		return output;
+	}
 	
 	
 	

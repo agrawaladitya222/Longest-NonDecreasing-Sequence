@@ -14,7 +14,7 @@ public class GUI extends GBFrame{
 	}
 
 	public GUI() {
-		outputbutton.setEnabled(false);
+		
 	}
 	
 	JLabel inputlabel = addLabel("Input a number into the sequence.",1,1,1,1);
@@ -30,10 +30,11 @@ public class GUI extends GBFrame{
 				sender.setInput(inputfield.getNumber());
 			else
 				messageBox("Invalid Input. Please try again.");
-			inputbutton.requestFocus();
+			inputfield.requestFocus();
 		}
 		if(button == outputbutton) {
-			
+			sender.findSequence();
+			System.out.println(sender.getOutput());
 			
 			
 		}
